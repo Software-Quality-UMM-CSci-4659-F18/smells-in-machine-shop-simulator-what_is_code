@@ -77,7 +77,6 @@ public class LinkedQueue implements Queue {
 
 	/** test program */
 	public static void main(String[] args) {
-		int x;
 		LinkedQueue q = new LinkedQueue(3);
 		// add a few elements
 		q.put(new Integer(1));
