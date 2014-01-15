@@ -7,13 +7,13 @@
 package exceptions;
 
 public class MyInputException extends RuntimeException {
-	private static final long serialVersionUID = -7921978290082262832L;
+    private static final long serialVersionUID = -7921978290082262832L;
 
-	public MyInputException() {
-		super();
-	}
+    public MyInputException() {
+        super();
+    }
 
-	public MyInputException(String message) {
-		super(message);
-	}
+    public MyInputException(String message) {
+        super(message);
+    }
 }

@@ -1,13 +1,13 @@
 package dataStructures;
 
 public interface Queue {
-	public boolean isEmpty();
+    public boolean isEmpty();
 
-	public Object getFrontElement();
+    public Object getFrontElement();
 
-	public Object getRearElement();
+    public Object getRearElement();
 
-	public void put(Object theObject);
+    public void put(Object theObject);
 
-	public Object remove();
+    public Object remove();
 }
