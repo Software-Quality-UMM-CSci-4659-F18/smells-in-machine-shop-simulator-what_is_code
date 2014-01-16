@@ -7,6 +7,13 @@ import dataStructures.LinkedQueue;
 import exceptions.MyInputException;
 
 public class MachineShopSimulator {
+    
+    public static final String NUMBER_OF_MACHINES_MUST_BE_AT_LEAST_1 = "number of machines must be >= 1";
+    public static final String NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1 = "number of machines and jobs must be >= 1";
+    public static final String CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0 = "change-over time must be >= 0";
+    public static final String EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK = "each job must have >= 1 task";
+    public static final String BAD_MACHINE_NUMBER_OR_TASK_TIME = "bad machine number or task time";
+    
     // top-level nested classes
     private static class Task {
         // data members
@@ -74,8 +81,7 @@ public class MachineShopSimulator {
                                                                  // m
                                                                  // machines
             if (theNumMachines < 1)
-                throw new IllegalArgumentException(
-                        "number of machines must be >= 1");
+                throw new IllegalArgumentException(NUMBER_OF_MACHINES_MUST_BE_AT_LEAST_1);
             finishTime = new int[theNumMachines + 1];
 
             // all machines are idle, initialize with
@@ -183,8 +189,7 @@ public class MachineShopSimulator {
         numMachines = keyboard.readInteger();
         numJobs = keyboard.readInteger();
         if (numMachines < 1 || numJobs < 1)
-            throw new MyInputException(
-                    "number of machines and jobs must be >= 1");
+            throw new MyInputException(NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1);
 
         // create event and machine queues
         eList = new EventList(numMachines, largeTime);
@@ -197,7 +202,7 @@ public class MachineShopSimulator {
         for (int j = 1; j <= numMachines; j++) {
             int ct = keyboard.readInteger();
             if (ct < 0)
-                throw new MyInputException("change-over time must be >= 0");
+                throw new MyInputException(CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
             machine[j].changeTime = ct;
         }
 
@@ -208,7 +213,7 @@ public class MachineShopSimulator {
             int tasks = keyboard.readInteger(); // number of tasks
             int firstMachine = 0; // machine for first task
             if (tasks < 1)
-                throw new MyInputException("each job must have > 1 task");
+                throw new MyInputException(EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
 
             // create the job
             theJob = new Job(i);
@@ -219,8 +224,7 @@ public class MachineShopSimulator {
                 int theTaskTime = keyboard.readInteger();
                 if (theMachine < 1 || theMachine > numMachines
                         || theTaskTime < 1)
-                    throw new MyInputException(
-                            "bad machine number or task time");
+                    throw new MyInputException(BAD_MACHINE_NUMBER_OR_TASK_TIME);
                 if (j == 1)
                     firstMachine = theMachine; // job's first machine
                 theJob.addTask(theMachine, theTaskTime); // add to
@@ -264,6 +268,13 @@ public class MachineShopSimulator {
     /** entry point for machine shop simulator */
     public static void main(String[] args) {
         largeTime = Integer.MAX_VALUE;
+        /*
+         * It's vital that we (re)set this to 0 because if the simulator is called
+         * multiple times (as happens in the acceptance tests), because timeNow
+         * is static it ends up carrying over from the last time it was run. I'm
+         * not convinced this is the best place for this to happen, though.
+         */
+        timeNow = 0;
         inputData(); // get machine and job data
         startShop(); // initial machine loading
         simulate(); // run all jobs through shop
