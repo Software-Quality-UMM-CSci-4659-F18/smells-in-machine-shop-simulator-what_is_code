@@ -1,0 +1,120 @@
+Enter number of machines and jobs
+Enter change-over times for machines
+Enter number of tasks for job 1
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 2
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 3
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 4
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 5
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 6
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 7
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 8
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 9
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 10
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 11
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 12
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 13
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 14
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 15
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 16
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 17
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 18
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 19
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 20
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 21
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 22
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 23
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 24
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 25
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 26
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 27
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 28
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 29
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 30
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 31
+Enter the tasks (machine, time) in process order
+Job 6 has completed at 17 Total wait was 0
+Job 23 has completed at 55 Total wait was 42
+Job 11 has completed at 387 Total wait was 347
+Job 27 has completed at 401 Total wait was 318
+Job 5 has completed at 508 Total wait was 416
+Job 26 has completed at 601 Total wait was 485
+Job 13 has completed at 805 Total wait was 750
+Job 21 has completed at 878 Total wait was 722
+Job 8 has completed at 899 Total wait was 761
+Job 17 has completed at 1096 Total wait was 1017
+Job 14 has completed at 1179 Total wait was 965
+Job 10 has completed at 1234 Total wait was 1086
+Job 16 has completed at 1383 Total wait was 1140
+Job 18 has completed at 1391 Total wait was 1214
+Job 9 has completed at 1514 Total wait was 1325
+Job 12 has completed at 1761 Total wait was 1385
+Job 15 has completed at 2007 Total wait was 1600
+Job 22 has completed at 2033 Total wait was 1635
+Job 30 has completed at 2124 Total wait was 1787
+Job 20 has completed at 2143 Total wait was 1653
+Job 4 has completed at 2160 Total wait was 1777
+Job 2 has completed at 2304 Total wait was 1815
+Job 19 has completed at 2529 Total wait was 2144
+Job 1 has completed at 2604 Total wait was 2175
+Job 3 has completed at 2635 Total wait was 2337
+Job 29 has completed at 2675 Total wait was 2349
+Job 25 has completed at 2676 Total wait was 2318
+Job 24 has completed at 2805 Total wait was 2435
+Job 28 has completed at 2853 Total wait was 2394
+Job 7 has completed at 2894 Total wait was 2562
+Job 31 has completed at 3026 Total wait was 2545
+Finish time = 3026
+Machine 1 completed 69 tasks
+The total wait time was 6305
+
+Machine 2 completed 54 tasks
+The total wait time was 1895
+
+Machine 3 completed 67 tasks
+The total wait time was 21988
+
+Machine 4 completed 64 tasks
+The total wait time was 3168
+
+Machine 5 completed 46 tasks
+The total wait time was 2027
+
+Machine 6 completed 60 tasks
+The total wait time was 421
+
+Machine 7 completed 57 tasks
+The total wait time was 966
+
+Machine 8 completed 74 tasks
+The total wait time was 6729
+

@@ -1,0 +1,105 @@
+Enter number of machines and jobs
+Enter change-over times for machines
+Enter number of tasks for job 1
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 2
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 3
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 4
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 5
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 6
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 7
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 8
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 9
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 10
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 11
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 12
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 13
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 14
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 15
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 16
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 17
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 18
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 19
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 20
+Enter the tasks (machine, time) in process order
+Job 12 has completed at 22 Total wait was 15
+Job 16 has completed at 115 Total wait was 72
+Job 17 has completed at 267 Total wait was 169
+Job 14 has completed at 270 Total wait was 144
+Job 15 has completed at 585 Total wait was 367
+Job 1 has completed at 634 Total wait was 412
+Job 5 has completed at 787 Total wait was 654
+Job 10 has completed at 824 Total wait was 524
+Job 9 has completed at 838 Total wait was 452
+Job 13 has completed at 859 Total wait was 763
+Job 6 has completed at 1059 Total wait was 794
+Job 4 has completed at 1085 Total wait was 776
+Job 18 has completed at 1178 Total wait was 875
+Job 8 has completed at 1266 Total wait was 901
+Job 11 has completed at 1277 Total wait was 735
+Job 2 has completed at 1303 Total wait was 893
+Job 20 has completed at 1355 Total wait was 1003
+Job 7 has completed at 1470 Total wait was 1007
+Job 3 has completed at 1486 Total wait was 999
+Job 19 has completed at 1504 Total wait was 966
+Finish time = 1504
+Machine 1 completed 26 tasks
+The total wait time was 193
+
+Machine 2 completed 27 tasks
+The total wait time was 470
+
+Machine 3 completed 29 tasks
+The total wait time was 3634
+
+Machine 4 completed 27 tasks
+The total wait time was 1233
+
+Machine 5 completed 25 tasks
+The total wait time was 41
+
+Machine 6 completed 30 tasks
+The total wait time was 731
+
+Machine 7 completed 25 tasks
+The total wait time was 134
+
+Machine 8 completed 24 tasks
+The total wait time was 483
+
+Machine 9 completed 13 tasks
+The total wait time was 14
+
+Machine 10 completed 20 tasks
+The total wait time was 831
+
+Machine 11 completed 34 tasks
+The total wait time was 2914
+
+Machine 12 completed 28 tasks
+The total wait time was 443
+
+Machine 13 completed 19 tasks
+The total wait time was 392
+
+Machine 14 completed 26 tasks
+The total wait time was 1008
+

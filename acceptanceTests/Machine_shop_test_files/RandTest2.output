@@ -1,0 +1,105 @@
+Enter number of machines and jobs
+Enter change-over times for machines
+Enter number of tasks for job 1
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 2
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 3
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 4
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 5
+Enter the tasks (machine, time) in process order
+Enter number of tasks for job 6
+Enter the tasks (machine, time) in process order
+Job 5 has completed at 75 Total wait was 40
+Job 1 has completed at 259 Total wait was 17
+Job 6 has completed at 321 Total wait was 49
+Job 3 has completed at 400 Total wait was 65
+Job 4 has completed at 557 Total wait was 168
+Job 2 has completed at 732 Total wait was 206
+Finish time = 732
+Machine 1 completed 5 tasks
+The total wait time was 12
+
+Machine 2 completed 3 tasks
+The total wait time was 0
+
+Machine 3 completed 6 tasks
+The total wait time was 16
+
+Machine 4 completed 2 tasks
+The total wait time was 0
+
+Machine 5 completed 5 tasks
+The total wait time was 17
+
+Machine 6 completed 5 tasks
+The total wait time was 11
+
+Machine 7 completed 1 tasks
+The total wait time was 0
+
+Machine 8 completed 6 tasks
+The total wait time was 30
+
+Machine 9 completed 10 tasks
+The total wait time was 301
+
+Machine 10 completed 1 tasks
+The total wait time was 0
+
+Machine 11 completed 8 tasks
+The total wait time was 17
+
+Machine 12 completed 4 tasks
+The total wait time was 26
+
+Machine 13 completed 4 tasks
+The total wait time was 0
+
+Machine 14 completed 4 tasks
+The total wait time was 0
+
+Machine 15 completed 4 tasks
+The total wait time was 21
+
+Machine 16 completed 2 tasks
+The total wait time was 0
+
+Machine 17 completed 4 tasks
+The total wait time was 0
+
+Machine 18 completed 2 tasks
+The total wait time was 0
+
+Machine 19 completed 2 tasks
+The total wait time was 0
+
+Machine 20 completed 3 tasks
+The total wait time was 0
+
+Machine 21 completed 3 tasks
+The total wait time was 0
+
+Machine 22 completed 1 tasks
+The total wait time was 0
+
+Machine 23 completed 4 tasks
+The total wait time was 28
+
+Machine 24 completed 7 tasks
+The total wait time was 55
+
+Machine 25 completed 5 tasks
+The total wait time was 0
+
+Machine 26 completed 2 tasks
+The total wait time was 0
+
+Machine 27 completed 5 tasks
+The total wait time was 1
+
+Machine 28 completed 4 tasks
+The total wait time was 10
+
