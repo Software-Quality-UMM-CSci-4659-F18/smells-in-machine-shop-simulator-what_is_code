@@ -50,4 +50,8 @@ class Job {
         return id;
     }
 
+    public boolean isDone() {
+        return getTaskQ().isEmpty();
+    }
+
 }
