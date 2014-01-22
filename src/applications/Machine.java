@@ -50,4 +50,8 @@ class Machine {
     public void setActiveJob(Job activeJob) {
         this.activeJob = activeJob;
     }
+
+    boolean hasNoWaitingJobs() {
+        return getJobQ().isEmpty();
+    }
 }
