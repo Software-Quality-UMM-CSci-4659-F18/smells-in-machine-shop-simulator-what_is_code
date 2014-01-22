@@ -61,4 +61,12 @@ class Machine {
     public void setToNoActiveJob() {
         activeJob = null;
     }
+
+    public int startNextJob() {
+        advanceActiveJob();
+        incrementTotalWaitTime();
+        incrementNumTasks();
+        int t = getActiveJob().removeNextTask();
+        return t;
+    }
 }

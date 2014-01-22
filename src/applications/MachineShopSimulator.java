@@ -66,10 +66,7 @@ public class MachineShopSimulator {
             if (currentMachine.hasNoWaitingJobs()) // no waiting job
                 eList.setFinishTime(theMachine, largeTime);
             else {// take job off the queue and work on it
-                currentMachine.advanceActiveJob();
-                currentMachine.incrementTotalWaitTime();
-                currentMachine.incrementNumTasks();
-                int t = currentMachine.getActiveJob().removeNextTask();
+                int t = currentMachine.startNextJob();
                 eList.setFinishTime(theMachine, timeNow + t);
             }
         } else {// task has just finished on machine[theMachine]
