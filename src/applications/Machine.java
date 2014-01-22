@@ -54,4 +54,8 @@ class Machine {
     boolean hasNoWaitingJobs() {
         return getJobQ().isEmpty();
     }
+
+    public Job nextJob() {
+        return (Job) getJobQ().remove();
+    }
 }
