@@ -57,4 +57,12 @@ class Machine {
         int thisWaitTime = currentTime - activeJob.getArrivalTime();
         totalWait = totalWait + thisWaitTime;
     }
+
+    public void advanceActiveJob() {
+        setActiveJob(nextJob());
+    }
+
+    public void setToNoActiveJob() {
+        setActiveJob(null);
+    }
 }
