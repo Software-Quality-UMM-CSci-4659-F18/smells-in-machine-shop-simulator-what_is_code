@@ -10,43 +10,43 @@ class Job {
     private int id; // job identifier
 
     // constructor
-    Job(int theId) {
+    public Job(int theId) {
         id = theId;
         taskQ = new LinkedQueue();
         // length and arrivalTime have default value 0
     }
 
     // other methods
-    void addTask(int theMachine, int theTime) {
+    public void addTask(int theMachine, int theTime) {
         taskQ.put(new Task(theMachine, theTime));
     }
 
     /**
      * remove next task of job and return its time also update length
      */
-    int removeNextTask() {
+    public int removeNextTask() {
         int theTime = ((Task) taskQ.remove()).getTime();
         length += theTime;
         return theTime;
     }
 
-    LinkedQueue getTaskQ() {
+    public LinkedQueue getTaskQ() {
         return taskQ;
     }
 
-    int getLength() {
+    public int getLength() {
         return length;
     }
 
-    int getArrivalTime() {
+    public int getArrivalTime() {
         return arrivalTime;
     }
 
-    void setArrivalTime(int arrivalTime) {
+    public void setArrivalTime(int arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
