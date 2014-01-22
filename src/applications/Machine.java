@@ -15,10 +15,6 @@ class Machine {
         jobQ = new LinkedQueue();
     }
 
-    public LinkedQueue getJobQ() {
-        return jobQ;
-    }
-
     public int getChangeTime() {
         return changeTime;
     }
@@ -52,14 +48,14 @@ class Machine {
     }
 
     boolean hasNoWaitingJobs() {
-        return getJobQ().isEmpty();
+        return jobQ.isEmpty();
     }
 
     public Job nextJob() {
-        return (Job) getJobQ().remove();
+        return (Job) jobQ.remove();
     }
 
     public void addJob(Job theJob) {
-        getJobQ().put(theJob);
+        jobQ.put(theJob);
     }
 }
