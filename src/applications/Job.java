@@ -30,10 +30,6 @@ class Job {
         return theTime;
     }
 
-    public LinkedQueue getTaskQ() {
-        return taskQ;
-    }
-
     public int getLength() {
         return length;
     }
@@ -51,11 +47,11 @@ class Job {
     }
 
     public boolean isDone() {
-        return getTaskQ().isEmpty();
+        return taskQ.isEmpty();
     }
 
-    Task nextTask() {
-        return (Task) getTaskQ().getFrontElement();
+    public Task nextTask() {
+        return (Task) taskQ.getFrontElement();
     }
 
 }
