@@ -36,10 +36,6 @@ class Machine {
         return activeJob;
     }
 
-    public void setActiveJob(Job activeJob) {
-        this.activeJob = activeJob;
-    }
-
     boolean hasNoWaitingJobs() {
         return jobQ.isEmpty();
     }
@@ -59,10 +55,10 @@ class Machine {
     }
 
     public void advanceActiveJob() {
-        setActiveJob(nextJob());
+        activeJob = nextJob();
     }
 
     public void setToNoActiveJob() {
-        setActiveJob(null);
+        activeJob = null;
     }
 }
