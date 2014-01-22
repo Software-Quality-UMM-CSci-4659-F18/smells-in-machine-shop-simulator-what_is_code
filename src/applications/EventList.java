@@ -41,12 +41,4 @@ class EventList {
     void setFinishTime(int theMachine, int theTime) {
         finishTime[theMachine] = theTime;
     }
-
-    int[] getFinishTime() {
-        return finishTime;
-    }
-
-    void setFinishTime(int[] finishTime) {
-        this.finishTime = finishTime;
-    }
 }
