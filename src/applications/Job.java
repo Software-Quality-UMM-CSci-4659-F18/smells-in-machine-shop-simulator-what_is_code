@@ -54,4 +54,8 @@ class Job {
         return getTaskQ().isEmpty();
     }
 
+    Task nextTask() {
+        return (Task) getTaskQ().getFrontElement();
+    }
+
 }
