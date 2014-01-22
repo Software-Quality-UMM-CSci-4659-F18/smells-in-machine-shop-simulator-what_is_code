@@ -20,6 +20,10 @@ public class MachineShopSimulator {
     private static EventList eList; // pointer to event list
     private static Machine[] machine; // array of machines
     private static int largeTime; // all machines finish before this
+    
+    public static int getCurrentTime() {
+        return timeNow;
+    }
 
     // methods
     /**
@@ -64,7 +68,7 @@ public class MachineShopSimulator {
             else {// take job off the queue and work on it
                 currentMachine.setActiveJob(currentMachine.nextJob());
                 currentMachine.setTotalWait(currentMachine.getTotalWait()
-                        + (timeNow
+                        + (getCurrentTime()
                                 - currentMachine.getActiveJob().getArrivalTime()));
                 currentMachine
                         .setNumTasks(currentMachine.getNumTasks() + 1);
