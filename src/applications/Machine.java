@@ -11,16 +11,13 @@ class Machine {
     private Job activeJob; // job currently active on this machine
 
     // constructor
-    public Machine() {
+    public Machine(int changeoverTime) {
+        changeTime = changeoverTime;
         jobQ = new LinkedQueue();
     }
 
     public int getChangeTime() {
         return changeTime;
-    }
-
-    public void setChangeTime(int changeTime) {
-        this.changeTime = changeTime;
     }
 
     public int getTotalWait() {
