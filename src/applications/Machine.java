@@ -24,10 +24,6 @@ class Machine {
         return totalWait;
     }
 
-    public void setTotalWait(int totalWait) {
-        this.totalWait = totalWait;
-    }
-
     public int getNumTasks() {
         return numTasks;
     }
@@ -54,5 +50,11 @@ class Machine {
 
     public void addJob(Job theJob) {
         jobQ.put(theJob);
+    }
+
+    public void incrementTotalWaitTime() {
+        int currentTime = MachineShopSimulator.getCurrentTime();
+        int thisWaitTime = currentTime - activeJob.getArrivalTime();
+        totalWait = totalWait + thisWaitTime;
     }
 }
