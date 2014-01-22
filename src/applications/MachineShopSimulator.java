@@ -131,7 +131,7 @@ public class MachineShopSimulator {
                     firstMachine = theMachine; // job's first machine
                 theJob.addTask(theMachine, theTaskTime); // add to
             } // task queue
-            machine[firstMachine].getJobQ().put(theJob);
+            machine[firstMachine].addJob(theJob);
         }
     }
 

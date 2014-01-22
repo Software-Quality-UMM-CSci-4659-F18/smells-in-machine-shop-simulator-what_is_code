@@ -58,4 +58,8 @@ class Machine {
     public Job nextJob() {
         return (Job) getJobQ().remove();
     }
+
+    public void addJob(Job theJob) {
+        getJobQ().put(theJob);
+    }
 }
