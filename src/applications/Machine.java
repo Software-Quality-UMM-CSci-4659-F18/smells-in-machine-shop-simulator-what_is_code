@@ -11,43 +11,43 @@ class Machine {
     private Job activeJob; // job currently active on this machine
 
     // constructor
-    Machine() {
+    public Machine() {
         jobQ = new LinkedQueue();
     }
 
-    LinkedQueue getJobQ() {
+    public LinkedQueue getJobQ() {
         return jobQ;
     }
 
-    int getChangeTime() {
+    public int getChangeTime() {
         return changeTime;
     }
 
-    void setChangeTime(int changeTime) {
+    public void setChangeTime(int changeTime) {
         this.changeTime = changeTime;
     }
 
-    int getTotalWait() {
+    public int getTotalWait() {
         return totalWait;
     }
 
-    void setTotalWait(int totalWait) {
+    public void setTotalWait(int totalWait) {
         this.totalWait = totalWait;
     }
 
-    int getNumTasks() {
+    public int getNumTasks() {
         return numTasks;
     }
 
-    void setNumTasks(int numTasks) {
+    public void setNumTasks(int numTasks) {
         this.numTasks = numTasks;
     }
 
-    Job getActiveJob() {
+    public Job getActiveJob() {
         return activeJob;
     }
 
-    void setActiveJob(Job activeJob) {
+    public void setActiveJob(Job activeJob) {
         this.activeJob = activeJob;
     }
 }
