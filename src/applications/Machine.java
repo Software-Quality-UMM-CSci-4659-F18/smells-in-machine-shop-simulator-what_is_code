@@ -28,8 +28,8 @@ class Machine {
         return numTasks;
     }
 
-    public void setNumTasks(int numTasks) {
-        this.numTasks = numTasks;
+    public void incrementNumTasks() {
+        ++numTasks;
     }
 
     public Job getActiveJob() {
