@@ -59,7 +59,7 @@ public class MachineShopSimulator {
                                             // schedule next one.
         Job lastJob;
         Machine currentMachine = machine[theMachine];
-        if (currentMachine.getActiveJob() == null) {// in idle or change-over
+        if (currentMachine.noActiveMethod()) {// in idle or change-over
                                                     // state
             lastJob = null;
             // wait over, ready for new job

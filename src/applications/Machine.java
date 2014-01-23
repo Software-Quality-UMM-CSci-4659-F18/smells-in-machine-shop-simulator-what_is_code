@@ -32,10 +32,6 @@ class Machine {
         ++numTasks;
     }
 
-    public Job getActiveJob() {
-        return activeJob;
-    }
-
     boolean hasNoWaitingJobs() {
         return jobQ.isEmpty();
     }
@@ -66,7 +62,7 @@ class Machine {
         advanceActiveJob();
         incrementTotalWaitTime();
         incrementNumTasks();
-        int t = getActiveJob().removeNextTask();
+        int t = activeJob.removeNextTask();
         return t;
     }
 
@@ -74,5 +70,9 @@ class Machine {
         Job lastJob = activeJob;
         activeJob = null;
         return lastJob;
+    }
+
+    public boolean noActiveMethod() {
+        return activeJob == null;
     }
 }
