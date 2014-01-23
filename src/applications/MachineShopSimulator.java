@@ -71,8 +71,7 @@ public class MachineShopSimulator {
             }
         } else {// task has just finished on machine[theMachine]
                 // schedule change-over time
-            lastJob = currentMachine.getActiveJob();
-            currentMachine.setToNoActiveJob();
+            lastJob = currentMachine.endActiveJob();
             eList.setFinishTime(theMachine, timeNow
                     + currentMachine.getChangeTime());
         }

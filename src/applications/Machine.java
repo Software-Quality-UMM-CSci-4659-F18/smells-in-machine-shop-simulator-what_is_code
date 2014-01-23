@@ -69,4 +69,10 @@ class Machine {
         int t = getActiveJob().removeNextTask();
         return t;
     }
+
+    public Job endActiveJob() {
+        Job lastJob = activeJob;
+        activeJob = null;
+        return lastJob;
+    }
 }
