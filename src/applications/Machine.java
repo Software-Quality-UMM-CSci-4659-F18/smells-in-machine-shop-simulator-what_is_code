@@ -13,14 +13,16 @@ public class Machine {
 
     // constructor
     public Machine() {
-        setJobQ(new LinkedQueue());
+        this.jobQ = new LinkedQueue();
     }
 
+    @Deprecated
+    /**
+     * We've deprecated this because it allows uncontrolled access to the
+     * Machine's Job queue. We'd like to replace accesses to this with 
+     * more controlled access.
+     */
     public LinkedQueue getJobQ() {
         return jobQ;
-    }
-
-    public void setJobQ(LinkedQueue jobQ) {
-        this.jobQ = jobQ;
     }
 }
