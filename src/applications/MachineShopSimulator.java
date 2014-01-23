@@ -35,21 +35,21 @@ public class MachineShopSimulator {
         private int id; // job identifier
 
         // constructor
-        private Job(int theId) {
+        public Job(int theId) {
             id = theId;
             taskQ = new LinkedQueue();
             // length and arrivalTime have default value 0
         }
 
         // other methods
-        private void addTask(int theMachine, int theTime) {
+        public void addTask(int theMachine, int theTime) {
             taskQ.put(new Task(theMachine, theTime));
         }
 
         /**
          * remove next task of job and return its time also update length
          */
-        private int removeNextTask() {
+        public int removeNextTask() {
             int theTime = ((Task) taskQ.remove()).time;
             length += theTime;
             return theTime;
@@ -65,7 +65,7 @@ public class MachineShopSimulator {
         Job activeJob; // job currently active on this machine
 
         // constructor
-        private Machine() {
+        public Machine() {
             jobQ = new LinkedQueue();
         }
     }
