@@ -15,7 +15,7 @@ public class MachineShopSimulator {
     public static final String BAD_MACHINE_NUMBER_OR_TASK_TIME = "bad machine number or task time";
     
     // top-level nested classes
-    private static class Task {
+    public static class Task {
         // data members
         private int machine;
         private int time;
@@ -27,7 +27,7 @@ public class MachineShopSimulator {
         }
     }
 
-    private static class Job {
+    public static class Job {
         // data members
         private LinkedQueue taskQ; // this job's tasks
         private int length; // sum of scheduled task times
@@ -56,7 +56,7 @@ public class MachineShopSimulator {
         }
     }
 
-    private static class Machine {
+    public static class Machine {
         // data members
         LinkedQueue jobQ; // queue of waiting jobs for this machine
         int changeTime; // machine change-over time
@@ -70,7 +70,7 @@ public class MachineShopSimulator {
         }
     }
 
-    private static class EventList {
+    public static class EventList {
         // data members
         int[] finishTime; // finish time array
 
