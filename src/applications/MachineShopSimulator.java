@@ -140,27 +140,28 @@ public class MachineShopSimulator {
     static Job changeState(int theMachine) {// Task on theMachine has finished,
                                             // schedule next one.
         Job lastJob;
-        if (machine[theMachine].activeJob == null) {// in idle or change-over
+        Machine currentMachine = machine[theMachine];
+        if (currentMachine.activeJob == null) {// in idle or change-over
                                                     // state
             lastJob = null;
             // wait over, ready for new job
-            if (machine[theMachine].getJobQ().isEmpty()) // no waiting job
+            if (currentMachine.getJobQ().isEmpty()) // no waiting job
                 eList.setFinishTime(theMachine, largeTime);
             else {// take job off the queue and work on it
-                machine[theMachine].activeJob = (Job) machine[theMachine].getJobQ()
+                currentMachine.activeJob = (Job) currentMachine.getJobQ()
                         .remove();
-                machine[theMachine].totalWait += timeNow
-                        - machine[theMachine].activeJob.arrivalTime;
-                machine[theMachine].numTasks++;
-                int t = machine[theMachine].activeJob.removeNextTask();
+                currentMachine.totalWait += timeNow
+                        - currentMachine.activeJob.arrivalTime;
+                currentMachine.numTasks++;
+                int t = currentMachine.activeJob.removeNextTask();
                 eList.setFinishTime(theMachine, timeNow + t);
             }
         } else {// task has just finished on machine[theMachine]
                 // schedule change-over time
-            lastJob = machine[theMachine].activeJob;
-            machine[theMachine].activeJob = null;
+            lastJob = currentMachine.activeJob;
+            currentMachine.activeJob = null;
             eList.setFinishTime(theMachine, timeNow
-                    + machine[theMachine].changeTime);
+                    + currentMachine.changeTime);
         }
 
         return lastJob;
