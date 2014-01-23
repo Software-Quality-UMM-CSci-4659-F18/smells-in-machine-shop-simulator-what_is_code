@@ -25,4 +25,8 @@ public class Machine {
     public LinkedQueue getJobQ() {
         return jobQ;
     }
+
+    public boolean hasNoActiveJob() {
+        return getJobQ().isEmpty();
+    }
 }
