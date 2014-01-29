@@ -101,12 +101,12 @@ public class MyInputStream {
 
     /** Input a float. */
     public float readFloat() {
-        return new Float(nextToken()).floatValue();
+        return Float.parseFloat(nextToken());
     }
 
     /** Input a double. */
     public double readDouble() {
-        return new Double(nextToken()).doubleValue();
+        return Double.parseDouble(nextToken());
     }
 
     /** Input a string. */
