@@ -13,49 +13,6 @@ public class MachineShopSimulator {
     public static final String EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK = "each job must have >= 1 task";
     public static final String BAD_MACHINE_NUMBER_OR_TASK_TIME = "bad machine number or task time";
 
-    private static class EventList {
-        // data members
-        int[] finishTime; // finish time array
-
-        // constructor
-        private EventList(int theNumMachines, int theLargeTime) {// initialize
-                                                                 // finish
-                                                                 // times for
-                                                                 // m
-                                                                 // machines
-            if (theNumMachines < 1)
-                throw new IllegalArgumentException(NUMBER_OF_MACHINES_MUST_BE_AT_LEAST_1);
-            finishTime = new int[theNumMachines + 1];
-
-            // all machines are idle, initialize with
-            // large finish time
-            for (int i = 1; i <= theNumMachines; i++)
-                finishTime[i] = theLargeTime;
-        }
-
-        /** @return machine for next event */
-        private int nextEventMachine() {
-            // find first machine to finish, this is the
-            // machine with smallest finish time
-            int p = 1;
-            int t = finishTime[1];
-            for (int i = 2; i < finishTime.length; i++)
-                if (finishTime[i] < t) {// i finishes earlier
-                    p = i;
-                    t = finishTime[i];
-                }
-            return p;
-        }
-
-        private int nextEventTime(int theMachine) {
-            return finishTime[theMachine];
-        }
-
-        private void setFinishTime(int theMachine, int theTime) {
-            finishTime[theMachine] = theTime;
-        }
-    }
-
     // data members of MachineShopSimulator
     private static int timeNow; // current time
     private static int numMachines; // number of machines
