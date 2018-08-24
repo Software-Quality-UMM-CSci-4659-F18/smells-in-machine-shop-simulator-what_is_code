@@ -13,7 +13,7 @@ public class MachineShopSimulator {
     public static final String CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0 = "change-over time must be >= 0";
     public static final String EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK = "each job must have >= 1 task";
     public static final String BAD_MACHINE_NUMBER_OR_TASK_TIME = "bad machine number or task time";
-    
+
     // top-level nested classes
     private static class Task {
         // data members
@@ -24,6 +24,14 @@ public class MachineShopSimulator {
         private Task(int theMachine, int theTime) {
             machine = theMachine;
             time = theTime;
+        }
+
+        public int getMachine() {
+            return machine;
+        }
+
+        public int getTime() {
+            return time;
         }
     }
 
@@ -50,7 +58,7 @@ public class MachineShopSimulator {
          * remove next task of job and return its time also update length
          */
         private int removeNextTask() {
-            int theTime = ((Task) taskQ.remove()).time;
+            int theTime = ((Task) taskQ.remove()).getTime();
             length += theTime;
             return theTime;
         }
@@ -134,7 +142,7 @@ public class MachineShopSimulator {
             return false;
         } else {// theJob has a next task
                 // get machine for next task
-            int p = ((Task) theJob.taskQ.getFrontElement()).machine;
+            int p = ((Task) theJob.taskQ.getFrontElement()).getMachine();
             // put on machine p's wait queue
             machine[p].jobQ.put(theJob);
             theJob.arrivalTime = timeNow;
