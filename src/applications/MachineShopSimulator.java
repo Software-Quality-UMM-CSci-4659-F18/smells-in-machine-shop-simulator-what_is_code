@@ -24,10 +24,9 @@ public class MachineShopSimulator {
      * 
      * @return false iff no next task
      */
-    static boolean moveToNextMachine(Job theJob) {
+    static boolean moveToNextMachine(Job theJob, SimulationResults simulationResults) {
         if (theJob.getTaskQ().isEmpty()) {// no next task
-            System.out.println("Job " + theJob.getId() + " has completed at "
-                    + timeNow + " Total wait was " + (timeNow - theJob.getLength()));
+            simulationResults.setJobCompletionData(theJob.getId(), timeNow, timeNow - theJob.getLength());
             return false;
         } else {// theJob has a next task
                 // get machine for next task
@@ -129,8 +128,9 @@ public class MachineShopSimulator {
             changeState(p);
     }
 
-    /** process all jobs to completion */
-    static void simulate() {
+    /** process all jobs to completion
+     * @param simulationResults*/
+    static void simulate(SimulationResults simulationResults) {
         while (numJobs > 0) {// at least one job left
             int nextToFinish = eList.nextEventMachine();
             timeNow = eList.nextEventTime(nextToFinish);
@@ -138,22 +138,34 @@ public class MachineShopSimulator {
             Job theJob = changeState(nextToFinish);
             // move theJob to its next machine
             // decrement numJobs if theJob has finished
-            if (theJob != null && !moveToNextMachine(theJob))
+            if (theJob != null && !moveToNextMachine(theJob, simulationResults))
                 numJobs--;
         }
     }
 
-    /** output wait times at machines */
-    static SimulationResults outputStatistics() {
-        System.out.println("Finish time = " + timeNow);
-        for (int p = 1; p <= numMachines; p++) {
-            System.out.println("Machine " + p + " completed "
-                    + machine[p].getNumTasks() + " tasks");
-            System.out.println("The total wait time was "
-                    + machine[p].getTotalWait());
-            System.out.println();
+    /** output wait times at machines
+     * @param simulationResults*/
+    static void outputStatistics(SimulationResults simulationResults) {
+        simulationResults.setTimeNow(timeNow);
+        simulationResults.setNumMachines(numMachines);
+        setNumTasksPerMachine(simulationResults);
+        setTotalWaitTimePerMachine(simulationResults);
+    }
+
+    private static void setTotalWaitTimePerMachine(SimulationResults simulationResults) {
+        int[] totalWaitTimePerMachine = new int[numMachines+1];
+        for (int i=1; i<=numMachines; ++i) {
+            totalWaitTimePerMachine[i] = machine[i].getTotalWait();
         }
-        return null;
+        simulationResults.setTotalWaitTimePerMachine(totalWaitTimePerMachine);
+    }
+
+    private static void setNumTasksPerMachine(SimulationResults simulationResults) {
+        int[] numTasksPerMachine = new int[numMachines+1];
+        for (int i=1; i<=numMachines; ++i) {
+            numTasksPerMachine[i] = machine[i].getNumTasks();
+        }
+        simulationResults.setNumTasksPerMachine(numTasksPerMachine);
     }
 
     /** entry point for machine shop simulator */
@@ -169,7 +181,9 @@ public class MachineShopSimulator {
         final SpecificationReader specificationReader = new SpecificationReader();
         SimulationSpecification specification = specificationReader.readSpecification();
         startShop(specification); // initial machine loading
-        simulate(); // run all jobs through shop
-        SimulationResults simulationResults = outputStatistics(); // output machine wait times
+        SimulationResults simulationResults = new SimulationResults(numJobs);
+        simulate(simulationResults); // run all jobs through shop
+        outputStatistics(simulationResults);
+        simulationResults.print();
     }
 }
