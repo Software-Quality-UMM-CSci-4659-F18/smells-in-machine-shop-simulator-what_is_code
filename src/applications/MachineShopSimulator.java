@@ -89,22 +89,11 @@ public class MachineShopSimulator {
 
         readNumberMachinesAndJobs(specification, keyboard);
 
-        // Move this to startShop when ready
-        MachineShopSimulator.numMachines = specification.getNumMachines();
-        MachineShopSimulator.numJobs = specification.getNumJobs();
-        createEventAndMachineQueues(specification);
-
         readChangeOverTimes(specification, keyboard);
-
-        // Move this to startShop when ready
-        setMachineChangeOverTimes(specification);
 
         readJobSpecifications(specification, keyboard);
 
-        // Move this to startShop when ready
-        setUpJobs(specification);
-
-        return null;
+        return specification;
     }
 
     private static void setMachineChangeOverTimes(SimulationSpecification specification) {
@@ -202,6 +191,17 @@ public class MachineShopSimulator {
     /** load first jobs onto each machine
      * @param specification*/
     static void startShop(SimulationSpecification specification) {
+        // Move this to startShop when ready
+        MachineShopSimulator.numMachines = specification.getNumMachines();
+        MachineShopSimulator.numJobs = specification.getNumJobs();
+        createEventAndMachineQueues(specification);
+
+        // Move this to startShop when ready
+        setMachineChangeOverTimes(specification);
+
+        // Move this to startShop when ready
+        setUpJobs(specification);
+
         for (int p = 1; p <= numMachines; p++)
             changeState(p);
     }
@@ -243,8 +243,8 @@ public class MachineShopSimulator {
          * not convinced this is the best place for this to happen, though.
          */
         timeNow = 0;
-        SimulationSpecification inputs = inputData(); // get machine and job data
-        startShop(inputs); // initial machine loading
+        SimulationSpecification specification = inputData(); // get machine and job data
+        startShop(specification); // initial machine loading
         simulate(); // run all jobs through shop
         SimulationResults simulationResults = outputStatistics(); // output machine wait times
     }
