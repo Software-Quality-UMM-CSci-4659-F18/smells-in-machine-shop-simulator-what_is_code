@@ -81,50 +81,93 @@ public class MachineShopSimulator {
     }
 
     /** input machine shop data */
-    static void inputData() {
+    static SimulationSpecification inputData() {
+        SimulationSpecification specification = new SimulationSpecification();
+
         // define the input stream to be the standard input stream
         MyInputStream keyboard = new MyInputStream();
 
-        System.out.println("Enter number of machines and jobs");
-        numMachines = keyboard.readInteger();
-        numJobs = keyboard.readInteger();
-        if (numMachines < 1 || numJobs < 1)
-            throw new MyInputException(NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1);
+        readNumberMachinesAndJobs(specification, keyboard);
 
-        // create event and machine queues
-        eList = new EventList(numMachines, largeTime);
-        machine = new Machine[numMachines + 1];
-        for (int i = 1; i <= numMachines; i++)
-            machine[i] = new Machine();
+        // Move this to startShop when ready
+        MachineShopSimulator.numMachines = specification.getNumMachines();
+        MachineShopSimulator.numJobs = specification.getNumJobs();
+        createEventAndMachineQueues(specification);
 
-        // input the change-over times
-        System.out.println("Enter change-over times for machines");
-        for (int j = 1; j <= numMachines; j++) {
-            int ct = keyboard.readInteger();
-            if (ct < 0)
-                throw new MyInputException(CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
-            machine[j].setChangeTime(ct);
+        readChangeOverTimes(specification, keyboard);
+
+        // Move this to startShop when ready
+        setMachineChangeOverTimes(specification);
+
+        readJobSpecifications(specification, keyboard);
+
+        // Move this to startShop when ready
+        setUpJobs(specification);
+
+        return null;
+    }
+
+    private static void setMachineChangeOverTimes(SimulationSpecification specification) {
+        for (int i = 1; i<=specification.getNumMachines(); ++i) {
+            machine[i].setChangeTime(specification.getChangeOverTimes(i));
         }
+    }
 
+    private static void readNumberMachinesAndJobs(SimulationSpecification specification, MyInputStream keyboard) {
+        System.out.println("Enter number of machines and jobs");
+        int numMachines = keyboard.readInteger();
+        int numJobs = keyboard.readInteger();
+        if (numMachines < 1 || numJobs < 1) {
+            throw new MyInputException(NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1);
+        } else {
+            specification.setNumMachines(numMachines);
+            specification.setNumJobs(numJobs);
+        }
+    }
+
+    private static void readJobSpecifications(SimulationSpecification specification, MyInputStream keyboard) {
         // input the jobs
-        Job theJob;
-        for (int i = 1; i <= numJobs; i++) {
+        JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()+1];
+        for (int i=1; i <= specification.getNumJobs(); i++) {
+            jobSpecifications[i] = new JobSpecification();
+        }
+        specification.setJobSpecification(jobSpecifications);
+        for (int i = 1; i <= specification.getNumJobs(); i++) {
             System.out.println("Enter number of tasks for job " + i);
             int tasks = keyboard.readInteger(); // number of tasks
-            int firstMachine = 0; // machine for first task
             if (tasks < 1)
                 throw new MyInputException(EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
+            jobSpecifications[i].setNumTasks(tasks);
+
+            int[] specificationsForTasks = new int[2 * tasks + 1];
+
+            System.out.println("Enter the tasks (machine, time)"
+                    + " in process order");
+            for (int j = 1; j <= tasks; j++) { // get tasks for job i
+                int theMachine = keyboard.readInteger();
+                int theTaskTime = keyboard.readInteger();
+                if (theMachine < 1 || theMachine > specification.getNumMachines()
+                        || theTaskTime < 1)
+                    throw new MyInputException(BAD_MACHINE_NUMBER_OR_TASK_TIME);
+                specificationsForTasks[2*(j-1)+1] = theMachine;
+                specificationsForTasks[2*(j-1)+2] = theTaskTime;
+            }
+            specification.setSpecificationsForTasks(i, specificationsForTasks);
+        }
+    }
+
+    private static void setUpJobs(SimulationSpecification specification) {
+        // input the jobs
+        Job theJob;
+        for (int i = 1; i <= specification.getNumJobs(); i++) {
+            int tasks = specification.getJobSpecifications(i).getNumTasks();
+            int firstMachine = 0; // machine for first task
 
             // create the job
             theJob = new Job(i);
-            System.out.println("Enter the tasks (machine, time)"
-                    + " in process order");
-            for (int j = 1; j <= tasks; j++) {// get tasks for job i
-                int theMachine = keyboard.readInteger();
-                int theTaskTime = keyboard.readInteger();
-                if (theMachine < 1 || theMachine > numMachines
-                        || theTaskTime < 1)
-                    throw new MyInputException(BAD_MACHINE_NUMBER_OR_TASK_TIME);
+            for (int j = 1; j <= tasks; j++) {
+                int theMachine = specification.getJobSpecifications(i).getSpecificationsForTasks()[2*(j-1)+1];
+                int theTaskTime = specification.getJobSpecifications(i).getSpecificationsForTasks()[2*(j-1)+2];
                 if (j == 1)
                     firstMachine = theMachine; // job's first machine
                 theJob.addTask(theMachine, theTaskTime); // add to
@@ -133,8 +176,32 @@ public class MachineShopSimulator {
         }
     }
 
-    /** load first jobs onto each machine */
-    static void startShop() {
+    private static void readChangeOverTimes(SimulationSpecification specification, MyInputStream keyboard) {
+        // input the change-over times
+        int changeOverTimes[] = new int[specification.getNumMachines()+1];
+
+        System.out.println("Enter change-over times for machines");
+        for (int j = 1; j <= specification.getNumMachines(); j++) {
+            int ct = keyboard.readInteger();
+            if (ct < 0)
+                throw new MyInputException(CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
+            changeOverTimes[j] = ct;
+        }
+
+        specification.setChangeOverTimes(changeOverTimes);
+    }
+
+    private static void createEventAndMachineQueues(SimulationSpecification specification) {
+        // create event and machine queues
+        eList = new EventList(specification.getNumMachines(), largeTime);
+        machine = new Machine[specification.getNumMachines() + 1];
+        for (int i = 1; i <= specification.getNumMachines(); i++)
+            machine[i] = new Machine();
+    }
+
+    /** load first jobs onto each machine
+     * @param specification*/
+    static void startShop(SimulationSpecification specification) {
         for (int p = 1; p <= numMachines; p++)
             changeState(p);
     }
@@ -154,7 +221,7 @@ public class MachineShopSimulator {
     }
 
     /** output wait times at machines */
-    static void outputStatistics() {
+    static SimulationResults outputStatistics() {
         System.out.println("Finish time = " + timeNow);
         for (int p = 1; p <= numMachines; p++) {
             System.out.println("Machine " + p + " completed "
@@ -163,6 +230,7 @@ public class MachineShopSimulator {
                     + machine[p].getTotalWait());
             System.out.println();
         }
+        return null;
     }
 
     /** entry point for machine shop simulator */
@@ -175,9 +243,9 @@ public class MachineShopSimulator {
          * not convinced this is the best place for this to happen, though.
          */
         timeNow = 0;
-        inputData(); // get machine and job data
-        startShop(); // initial machine loading
+        SimulationSpecification inputs = inputData(); // get machine and job data
+        startShop(inputs); // initial machine loading
         simulate(); // run all jobs through shop
-        outputStatistics(); // output machine wait times
+        SimulationResults simulationResults = outputStatistics(); // output machine wait times
     }
 }
