@@ -166,7 +166,8 @@ public class MachineShopSimulator {
          * not convinced this is the best place for this to happen, though.
          */
         timeNow = 0;
-        SimulationSpecification specification = SpecificationReader.readSpecification(); // get machine and job data
+        final SpecificationReader specificationReader = new SpecificationReader();
+        SimulationSpecification specification = specificationReader.readSpecification();
         startShop(specification); // initial machine loading
         simulate(); // run all jobs through shop
         SimulationResults simulationResults = outputStatistics(); // output machine wait times

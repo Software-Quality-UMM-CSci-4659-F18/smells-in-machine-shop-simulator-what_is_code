@@ -5,35 +5,22 @@ import utilities.MyInputStream;
 
 public class SpecificationReader {
 
-    /** input machine shop data */
-    public static SimulationSpecification readSpecification() {
-        SimulationSpecification specification = new SimulationSpecification();
+    private void readChangeOverTimes(SimulationSpecification specification, MyInputStream keyboard) {
+        // input the change-over times
+        int changeOverTimes[] = new int[specification.getNumMachines()+1];
 
-        // define the input stream to be the standard input stream
-        MyInputStream keyboard = new MyInputStream();
-
-        readNumberMachinesAndJobs(specification, keyboard);
-
-        readChangeOverTimes(specification, keyboard);
-
-        readJobSpecifications(specification, keyboard);
-
-        return specification;
-    }
-
-    private static void readNumberMachinesAndJobs(SimulationSpecification specification, MyInputStream keyboard) {
-        System.out.println("Enter number of machines and jobs");
-        int numMachines = keyboard.readInteger();
-        int numJobs = keyboard.readInteger();
-        if (numMachines < 1 || numJobs < 1) {
-            throw new MyInputException(MachineShopSimulator.NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1);
-        } else {
-            specification.setNumMachines(numMachines);
-            specification.setNumJobs(numJobs);
+        System.out.println("Enter change-over times for machines");
+        for (int j = 1; j <= specification.getNumMachines(); j++) {
+            int ct = keyboard.readInteger();
+            if (ct < 0)
+                throw new MyInputException(MachineShopSimulator.CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
+            changeOverTimes[j] = ct;
         }
+
+        specification.setChangeOverTimes(changeOverTimes);
     }
 
-    private static void readJobSpecifications(SimulationSpecification specification, MyInputStream keyboard) {
+    private void readJobSpecifications(SimulationSpecification specification, MyInputStream keyboard) {
         // input the jobs
         JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()+1];
         for (int i=1; i <= specification.getNumJobs(); i++) {
@@ -64,18 +51,31 @@ public class SpecificationReader {
         }
     }
 
-    private static void readChangeOverTimes(SimulationSpecification specification, MyInputStream keyboard) {
-        // input the change-over times
-        int changeOverTimes[] = new int[specification.getNumMachines()+1];
-
-        System.out.println("Enter change-over times for machines");
-        for (int j = 1; j <= specification.getNumMachines(); j++) {
-            int ct = keyboard.readInteger();
-            if (ct < 0)
-                throw new MyInputException(MachineShopSimulator.CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
-            changeOverTimes[j] = ct;
+    private void readNumberMachinesAndJobs(SimulationSpecification specification, MyInputStream keyboard) {
+        System.out.println("Enter number of machines and jobs");
+        int numMachines = keyboard.readInteger();
+        int numJobs = keyboard.readInteger();
+        if (numMachines < 1 || numJobs < 1) {
+            throw new MyInputException(MachineShopSimulator.NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1);
+        } else {
+            specification.setNumMachines(numMachines);
+            specification.setNumJobs(numJobs);
         }
+    }
 
-        specification.setChangeOverTimes(changeOverTimes);
+    /** input machine shop data */
+    public SimulationSpecification readSpecification() {
+        SimulationSpecification specification = new SimulationSpecification();
+
+        // define the input stream to be the standard input stream
+        MyInputStream keyboard = new MyInputStream();
+
+        readNumberMachinesAndJobs(specification, keyboard);
+
+        readChangeOverTimes(specification, keyboard);
+
+        readJobSpecifications(specification, keyboard);
+
+        return specification;
     }
 }
