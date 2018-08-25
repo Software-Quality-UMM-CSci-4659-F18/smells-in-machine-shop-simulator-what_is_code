@@ -5,7 +5,15 @@ import utilities.MyInputStream;
 
 public class SpecificationReader {
 
-    private void readChangeOverTimes(SimulationSpecification specification, MyInputStream keyboard) {
+    private final SimulationSpecification specification;
+    private final MyInputStream keyboard;
+
+    public SpecificationReader() {
+        specification = new SimulationSpecification();
+        keyboard = new MyInputStream();
+    }
+
+    private void readChangeOverTimes() {
         // input the change-over times
         int changeOverTimes[] = new int[specification.getNumMachines()+1];
 
@@ -20,7 +28,7 @@ public class SpecificationReader {
         specification.setChangeOverTimes(changeOverTimes);
     }
 
-    private void readJobSpecifications(SimulationSpecification specification, MyInputStream keyboard) {
+    private void readJobSpecifications() {
         // input the jobs
         JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()+1];
         for (int i=1; i <= specification.getNumJobs(); i++) {
@@ -51,7 +59,7 @@ public class SpecificationReader {
         }
     }
 
-    private void readNumberMachinesAndJobs(SimulationSpecification specification, MyInputStream keyboard) {
+    private void readNumberMachinesAndJobs() {
         System.out.println("Enter number of machines and jobs");
         int numMachines = keyboard.readInteger();
         int numJobs = keyboard.readInteger();
@@ -65,17 +73,9 @@ public class SpecificationReader {
 
     /** input machine shop data */
     public SimulationSpecification readSpecification() {
-        SimulationSpecification specification = new SimulationSpecification();
-
-        // define the input stream to be the standard input stream
-        MyInputStream keyboard = new MyInputStream();
-
-        readNumberMachinesAndJobs(specification, keyboard);
-
-        readChangeOverTimes(specification, keyboard);
-
-        readJobSpecifications(specification, keyboard);
-
+        readNumberMachinesAndJobs();
+        readChangeOverTimes();
+        readJobSpecifications();
         return specification;
     }
 }
