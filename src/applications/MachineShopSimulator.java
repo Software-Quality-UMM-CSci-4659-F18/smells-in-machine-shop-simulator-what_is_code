@@ -168,6 +168,15 @@ public class MachineShopSimulator {
         simulationResults.setNumTasksPerMachine(numTasksPerMachine);
     }
 
+    public static SimulationResults runSimulation(SimulationSpecification specification) {
+        timeNow = 0;
+        startShop(specification); // initial machine loading
+        SimulationResults simulationResults = new SimulationResults(numJobs);
+        simulate(simulationResults); // run all jobs through shop
+        outputStatistics(simulationResults);
+        return simulationResults;
+    }
+
     /** entry point for machine shop simulator */
     public static void main(String[] args) {
         largeTime = Integer.MAX_VALUE;
@@ -177,13 +186,9 @@ public class MachineShopSimulator {
          * is static it ends up carrying over from the last time it was run. I'm
          * not convinced this is the best place for this to happen, though.
          */
-        timeNow = 0;
         final SpecificationReader specificationReader = new SpecificationReader();
         SimulationSpecification specification = specificationReader.readSpecification();
-        startShop(specification); // initial machine loading
-        SimulationResults simulationResults = new SimulationResults(numJobs);
-        simulate(simulationResults); // run all jobs through shop
-        outputStatistics(simulationResults);
+        SimulationResults simulationResults = runSimulation(specification);
         simulationResults.print();
     }
 }
