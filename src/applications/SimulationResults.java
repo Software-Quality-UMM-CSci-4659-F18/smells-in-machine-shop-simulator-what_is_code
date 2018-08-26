@@ -28,6 +28,10 @@ public class SimulationResults {
         }
     }
 
+    public int getFinishTime() {
+        return finishTime;
+    }
+
     public void setFinishTime(int finishTime) {
         this.finishTime = finishTime;
     }
@@ -42,6 +46,10 @@ public class SimulationResults {
 
     public void setTotalWaitTimePerMachine(int[] totalWaitTimePerMachine) {
         this.totalWaitTimePerMachine = totalWaitTimePerMachine;
+    }
+
+    public JobCompletionData[] getJobCompletionData() {
+        return jobCompletions;
     }
 
     public void setJobCompletionData(int jobNumber, int completionTime, int totalWaitTime) {
