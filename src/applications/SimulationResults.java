@@ -1,7 +1,7 @@
 package applications;
 
 public class SimulationResults {
-    private int timeNow;
+    private int finishTime;
     private int numMachines;
     private int[] numTasksPerMachine;
     private int[] totalWaitTimePerMachine;
@@ -18,7 +18,7 @@ public class SimulationResults {
                     + data.getCompletionTime() + " Total wait was " + data.getTotalWaitTime());
         }
 
-        System.out.println("Finish time = " + timeNow);
+        System.out.println("Finish time = " + finishTime);
         for (int p = 1; p <= numMachines; p++) {
             System.out.println("Machine " + p + " completed "
                     + numTasksPerMachine[p] + " tasks");
@@ -28,8 +28,8 @@ public class SimulationResults {
         }
     }
 
-    public void setTimeNow(int timeNow) {
-        this.timeNow = timeNow;
+    public void setFinishTime(int finishTime) {
+        this.finishTime = finishTime;
     }
 
     public void setNumMachines(int numMachines) {

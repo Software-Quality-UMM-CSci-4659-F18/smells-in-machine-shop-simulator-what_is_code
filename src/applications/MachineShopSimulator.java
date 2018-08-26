@@ -146,7 +146,7 @@ public class MachineShopSimulator {
     /** output wait times at machines
      * @param simulationResults*/
     static void outputStatistics(SimulationResults simulationResults) {
-        simulationResults.setTimeNow(timeNow);
+        simulationResults.setFinishTime(timeNow);
         simulationResults.setNumMachines(numMachines);
         setNumTasksPerMachine(simulationResults);
         setTotalWaitTimePerMachine(simulationResults);
@@ -169,6 +169,7 @@ public class MachineShopSimulator {
     }
 
     public static SimulationResults runSimulation(SimulationSpecification specification) {
+        largeTime = Integer.MAX_VALUE;
         timeNow = 0;
         startShop(specification); // initial machine loading
         SimulationResults simulationResults = new SimulationResults(numJobs);
@@ -179,7 +180,6 @@ public class MachineShopSimulator {
 
     /** entry point for machine shop simulator */
     public static void main(String[] args) {
-        largeTime = Integer.MAX_VALUE;
         /*
          * It's vital that we (re)set this to 0 because if the simulator is called
          * multiple times (as happens in the acceptance tests), because timeNow
