@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Machine-shop-simulator.iml" filepath="$PROJECT_DIR$/.idea/Machine-shop-simulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Machine-shop-simulator_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Machine-shop-simulator_main.iml" group="Machine-shop-simulator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Machine-shop-simulator_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Machine-shop-simulator_test.iml" group="Machine-shop-simulator" />
     </modules>
   </component>
 </project>

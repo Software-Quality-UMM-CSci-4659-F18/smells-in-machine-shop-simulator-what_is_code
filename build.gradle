@@ -1,0 +1,32 @@
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['tests/unitTests', 'tests/acceptanceTests']
+        }
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+run {
+    standardInput = System.in
+}
+
+mainClassName = 'applications.MachineShopSimulator'
