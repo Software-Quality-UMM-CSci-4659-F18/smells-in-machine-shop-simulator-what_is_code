@@ -22,7 +22,7 @@ import exceptions.MyInputException;
  */
 public class FileIoTests {
 
-    private static final String ACCEPTANCE_TEST_DIRECTORY = "acceptanceTests/";
+    private static final String ACCEPTANCE_TEST_DIRECTORY = "tests/acceptanceTests/";
     private static final String TEST_FILE_DIRECTORY 
         = ACCEPTANCE_TEST_DIRECTORY + "Machine_shop_test_files/";
     private static final String EXCEPTION_TEST_FILE_DIRECTORY
