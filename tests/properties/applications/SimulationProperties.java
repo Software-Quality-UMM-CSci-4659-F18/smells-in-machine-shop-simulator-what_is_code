@@ -19,4 +19,23 @@ public class SimulationProperties {
         final int lastJobCompletionTime = jobCompletionData[jobCompletionData.length-1].getCompletionTime();
         assertEquals(finishTime, lastJobCompletionTime);
     }
+
+    @Property
+    public void waitTimesShouldMatch(
+            @From(SimulationSpecificationGenerator.class)
+                    SimulationSpecification specification) {
+        final SimulationResults results = MachineShopSimulator.runSimulation(specification);
+
+        int totalMachineWaitTime = 0;
+        for (int waitTime : results.getTotalWaitTimePerMachine()) {
+            totalMachineWaitTime += waitTime;
+        }
+
+        int totalJobWaitTime = 0;
+        for (JobCompletionData jobCompletionData : results.getJobCompletionData()) {
+            totalJobWaitTime += jobCompletionData.getTotalWaitTime();
+        }
+
+        assertEquals(totalJobWaitTime, totalMachineWaitTime);
+    }
 }
