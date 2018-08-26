@@ -1,5 +1,7 @@
 package applications;
 
+import java.util.Arrays;
+
 public class SimulationResults {
     private int finishTime;
     private int numMachines;
@@ -42,6 +44,10 @@ public class SimulationResults {
 
     public void setNumTasksPerMachine(int[] numTasksPerMachine) {
         this.numTasksPerMachine = numTasksPerMachine;
+    }
+
+    public int[] getTotalWaitTimePerMachine() {
+        return Arrays.copyOf(totalWaitTimePerMachine, totalWaitTimePerMachine.length);
     }
 
     public void setTotalWaitTimePerMachine(int[] totalWaitTimePerMachine) {
