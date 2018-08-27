@@ -146,7 +146,7 @@ public class MachineShopSimulator {
     /** output wait times at machines
      * @param simulationResults*/
     static void outputStatistics(SimulationResults simulationResults) {
-        simulationResults.setTimeNow(timeNow);
+        simulationResults.setFinishTime(timeNow);
         simulationResults.setNumMachines(numMachines);
         setNumTasksPerMachine(simulationResults);
         setTotalWaitTimePerMachine(simulationResults);
@@ -168,22 +168,27 @@ public class MachineShopSimulator {
         simulationResults.setNumTasksPerMachine(numTasksPerMachine);
     }
 
+    public static SimulationResults runSimulation(SimulationSpecification specification) {
+        largeTime = Integer.MAX_VALUE;
+        timeNow = 0;
+        startShop(specification); // initial machine loading
+        SimulationResults simulationResults = new SimulationResults(numJobs);
+        simulate(simulationResults); // run all jobs through shop
+        outputStatistics(simulationResults);
+        return simulationResults;
+    }
+
     /** entry point for machine shop simulator */
     public static void main(String[] args) {
-        largeTime = Integer.MAX_VALUE;
         /*
          * It's vital that we (re)set this to 0 because if the simulator is called
          * multiple times (as happens in the acceptance tests), because timeNow
          * is static it ends up carrying over from the last time it was run. I'm
          * not convinced this is the best place for this to happen, though.
          */
-        timeNow = 0;
         final SpecificationReader specificationReader = new SpecificationReader();
         SimulationSpecification specification = specificationReader.readSpecification();
-        startShop(specification); // initial machine loading
-        SimulationResults simulationResults = new SimulationResults(numJobs);
-        simulate(simulationResults); // run all jobs through shop
-        outputStatistics(simulationResults);
+        SimulationResults simulationResults = runSimulation(specification);
         simulationResults.print();
     }
 }

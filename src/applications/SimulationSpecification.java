@@ -1,5 +1,7 @@
 package applications;
 
+import java.util.Arrays;
+
 public class SimulationSpecification {
     private int numMachines;
     private int numJobs;
@@ -40,5 +42,20 @@ public class SimulationSpecification {
 
     public JobSpecification getJobSpecifications(int jobNumber) {
         return jobSpecifications[jobNumber];
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<").append(numMachines).append(" machines, ");
+        builder.append(numJobs).append(" jobs; ");
+        builder.append("change overs: ").append(Arrays.toString(changeOverTimes));
+        for (int i=1; i<=numJobs; ++i) {
+            builder.append("; job ").append(i).append(" tasks: ");
+            builder.append(Arrays.toString(jobSpecifications[i].getSpecificationsForTasks()));
+        }
+
+        builder.append(">");
+        return builder.toString();
     }
 }

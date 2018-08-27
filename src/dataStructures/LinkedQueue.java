@@ -74,6 +74,18 @@ public class LinkedQueue implements Queue {
         return frontElement;
     }
 
+    public int size() {
+        int result = 0;
+
+        ChainNode currentNode = front;
+        while (currentNode != null) {
+            ++result;
+            currentNode = currentNode.next;
+        }
+
+        return result;
+    }
+
     /** test program */
     public static void main(String[] args) {
         LinkedQueue q = new LinkedQueue(3);
@@ -89,5 +101,16 @@ public class LinkedQueue implements Queue {
             System.out.println("Front element is " + q.getFrontElement());
             System.out.println("Removed the element " + q.remove());
         }
+    }
+
+    @Override public String toString() {
+        String result = "<";
+        ChainNode node = front;
+        while (node != null) {
+            result += node.element.toString() + ", ";
+            node = node.next;
+        }
+        result += ">";
+        return result;
     }
 }
