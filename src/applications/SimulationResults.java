@@ -42,6 +42,10 @@ public class SimulationResults {
         this.numMachines = numMachines;
     }
 
+    public int[] getNumTasksPerMachine() {
+        return Arrays.copyOf(numTasksPerMachine, numTasksPerMachine.length);
+    }
+
     public void setNumTasksPerMachine(int[] numTasksPerMachine) {
         this.numTasksPerMachine = numTasksPerMachine;
     }
