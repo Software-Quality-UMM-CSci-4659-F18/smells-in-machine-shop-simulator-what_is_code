@@ -16,12 +16,16 @@ sourceSets {
     }
     test {
         java {
-            srcDirs = ['tests/unitTests', 'tests/acceptanceTests']
+            srcDirs = ['tests/unitTests', 'tests/acceptanceTests', 'tests/properties']
         }
     }
 }
 
 dependencies {
+    compile 'com.pholser:junit-quickcheck-core:0.8.1'
+    compile 'com.pholser:junit-quickcheck-generators:0.8.1'
+    compile 'org.hamcrest:hamcrest-library:1.3'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
     testCompile 'junit:junit:4.12'
 }
 

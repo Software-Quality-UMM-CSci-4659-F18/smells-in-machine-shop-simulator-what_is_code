@@ -1,7 +1,9 @@
 package applications;
 
+import java.util.Arrays;
+
 public class SimulationResults {
-    private int timeNow;
+    private int finishTime;
     private int numMachines;
     private int[] numTasksPerMachine;
     private int[] totalWaitTimePerMachine;
@@ -18,7 +20,7 @@ public class SimulationResults {
                     + data.getCompletionTime() + " Total wait was " + data.getTotalWaitTime());
         }
 
-        System.out.println("Finish time = " + timeNow);
+        System.out.println("Finish time = " + finishTime);
         for (int p = 1; p <= numMachines; p++) {
             System.out.println("Machine " + p + " completed "
                     + numTasksPerMachine[p] + " tasks");
@@ -28,20 +30,36 @@ public class SimulationResults {
         }
     }
 
-    public void setTimeNow(int timeNow) {
-        this.timeNow = timeNow;
+    public int getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(int finishTime) {
+        this.finishTime = finishTime;
     }
 
     public void setNumMachines(int numMachines) {
         this.numMachines = numMachines;
     }
 
+    public int[] getNumTasksPerMachine() {
+        return Arrays.copyOf(numTasksPerMachine, numTasksPerMachine.length);
+    }
+
     public void setNumTasksPerMachine(int[] numTasksPerMachine) {
         this.numTasksPerMachine = numTasksPerMachine;
     }
 
+    public int[] getTotalWaitTimePerMachine() {
+        return Arrays.copyOf(totalWaitTimePerMachine, totalWaitTimePerMachine.length);
+    }
+
     public void setTotalWaitTimePerMachine(int[] totalWaitTimePerMachine) {
         this.totalWaitTimePerMachine = totalWaitTimePerMachine;
+    }
+
+    public JobCompletionData[] getJobCompletionData() {
+        return jobCompletions;
     }
 
     public void setJobCompletionData(int jobNumber, int completionTime, int totalWaitTime) {
