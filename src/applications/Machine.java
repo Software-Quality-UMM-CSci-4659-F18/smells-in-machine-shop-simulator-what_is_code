@@ -35,6 +35,10 @@ class Machine {
         this.totalWait = totalWait;
     }
 
+    public void addTimeNow(int timeNow){
+        this.totalWait = totalWait + timeNow - activeJob.getArrivalTime();
+    }
+
     public int getNumTasks() {
         return numTasks;
     }
@@ -43,11 +47,27 @@ class Machine {
         this.numTasks = numTasks;
     }
 
+    public void addToNumTasks(int nums) {
+        this.numTasks += nums;
+    }
+
+    public int getTaskTime(){ return this.activeJob.removeNextTask();}
+
     public Job getActiveJob() {
         return activeJob;
+    }
+
+    public boolean isEmpty(){
+        return jobQ.isEmpty();
     }
 
     public void setActiveJob(Job activeJob) {
         this.activeJob = activeJob;
     }
+
+    public void takeJobFromQueue() {
+        this.activeJob = (Job) jobQ.remove();
+    }
+
+    public void setJobtoNull() {this.activeJob = null;}
 }
