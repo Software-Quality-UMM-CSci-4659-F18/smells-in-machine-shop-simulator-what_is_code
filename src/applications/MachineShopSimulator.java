@@ -92,8 +92,8 @@ public class MachineShopSimulator {
             // create the job
             theJob = new Job(i);
             for (int j = 1; j <= tasks; j++) {
-                int theMachine = specification.getTaskMachine(i,j);
-                int theTaskTime = specification.getTaskTime(i,j);
+                int theMachine = specification.getSpecificMachine(i,j);
+                int theTaskTime = specification.getSpecificTime(i,j);
                 if (j == 1)
                     firstMachine = theMachine; // job's first machine
                 theJob.addTask(theMachine, theTaskTime); // add to

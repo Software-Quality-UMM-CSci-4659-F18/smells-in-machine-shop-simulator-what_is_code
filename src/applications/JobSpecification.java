@@ -19,4 +19,12 @@ public class JobSpecification {
     public int[] getSpecificationsForTasks() {
         return specifyTasks;
     }
+
+    public int getTaskMachine(int j) {
+        return specifyTasks[2*(j-1)+1];
+    }
+
+    public int getTaskTime(int j) {
+        return specifyTasks[2*(j-1)+2];
+    }
 }
