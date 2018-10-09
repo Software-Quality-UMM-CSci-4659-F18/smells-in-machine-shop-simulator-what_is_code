@@ -52,6 +52,10 @@ public class SimulationSpecification {
         return jobSpecifications[i].getTaskTime(j);
     }
 
+    public int getSpecificTasks(int i){
+        return jobSpecifications[i].getNumTasks();
+    }
+
 
     @Override
     public String toString() {

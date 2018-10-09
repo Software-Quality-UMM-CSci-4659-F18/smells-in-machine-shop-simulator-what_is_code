@@ -78,7 +78,8 @@ public class MachineShopSimulator {
 
     private static void setMachineChangeOverTimes(SimulationSpecification specification) {
         for (int i = 1; i<=specification.getNumMachines(); ++i) {
-            machine[i].setChangeTime(specification.getChangeOverTimes(i));
+            int time = specification.getChangeOverTimes(i);
+            machine[i].setChangeTime(time);
         }
     }
 
@@ -86,7 +87,7 @@ public class MachineShopSimulator {
         // input the jobs
         Job theJob;
         for (int i = 1; i <= specification.getNumJobs(); i++) {
-            int tasks = specification.getJobSpecifications(i).getNumTasks();
+            int tasks = specification.getSpecificTasks(i);
             int firstMachine = 0; // machine for first task
 
             // create the job
