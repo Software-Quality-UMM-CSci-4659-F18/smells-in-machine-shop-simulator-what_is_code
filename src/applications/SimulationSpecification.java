@@ -44,6 +44,19 @@ public class SimulationSpecification {
         return jobSpecifications[jobNumber];
     }
 
+    public int getSpecificMachine(int i, int j) {
+        return jobSpecifications[i].getTaskMachine(j);
+    }
+
+    public int getSpecificTime(int i, int j) {
+        return jobSpecifications[i].getTaskTime(j);
+    }
+
+    public int getSpecificTasks(int i){
+        return jobSpecifications[i].getNumTasks();
+    }
+
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

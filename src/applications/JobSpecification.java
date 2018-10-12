@@ -2,7 +2,7 @@ package applications;
 
 public class JobSpecification {
     private int numTasks;
-    private int[] specificationsForTasks;
+    private int[] specifyTasks;
 
     public void setNumTasks(int numTasks) {
         this.numTasks = numTasks;
@@ -13,10 +13,18 @@ public class JobSpecification {
     }
 
     public void setSpecificationsForTasks(int[] specificationsForTasks) {
-        this.specificationsForTasks = specificationsForTasks;
+        this.specifyTasks = specificationsForTasks;
     }
 
     public int[] getSpecificationsForTasks() {
-        return specificationsForTasks;
+        return specifyTasks;
+    }
+
+    public int getTaskMachine(int j) {
+        return specifyTasks[2*(j-1)+1];
+    }
+
+    public int getTaskTime(int j) {
+        return specifyTasks[2*(j-1)+2];
     }
 }
