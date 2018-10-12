@@ -67,5 +67,4 @@ public class SimulationResults {
         jobCompletions[nextJob] = jobCompletionData;
         nextJob++;
     }
-
 }
